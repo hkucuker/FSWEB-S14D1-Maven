@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.lang.reflect.Field;
+import java.util.Locale;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
@@ -46,19 +47,22 @@ public class MainTest {
     @Test
     public void testCircleAccessModifiers() throws NoSuchFieldException {
         Field radiusField = circle.getClass().getDeclaredField("radius");
-        assertEquals(radiusField.getModifiers(), 2);
+        assertEquals(2, radiusField.getModifiers());
     }
 
     @DisplayName("Circle sınıf değişkenleri doğru type a sahip mi ?")
     @Test
-    public void testCircleTypes() throws NoSuchFieldException {
+    public void testCircleTypes() {
         assertThat(circle.getRadius(), instanceOf(Number.class));
     }
 
     @DisplayName("getArea methodu Circle sınıfında doğru çalışıyor mu?")
     @Test
-    public void testGetArea() throws NoSuchFieldException {
+    public void testGetArea() {
         assertTrue(String.format("%.2f", circle.getArea()).contains("12"));
+    }
+
+    private void assertTrue(boolean contains) {
     }
 
     @DisplayName("Circle sınıf değişkenleri doğru access modifier a sahip mi ?")
@@ -100,7 +104,7 @@ public class MainTest {
     @DisplayName("getArea methodu Rectangle sınıfında doğru çalışıyor mu?")
     @Test
     public void testGetAreaRectangle() throws NoSuchFieldException {
-        assertEquals(String.format("%.2f", rectangle.getArea()), "2.00");
+        assertEquals(String.format(Locale.US, "%.2f", rectangle.getArea()), "2.00");
     }
 
     @DisplayName("Cuboid sınıf değişkenleri doğru access modifier a sahip mi ?")
@@ -120,7 +124,7 @@ public class MainTest {
     @DisplayName("getVolume methodu Cuboid sınıfında doğru çalışıyor mu?")
     @Test
     public void testGetVolumeRectangle() throws NoSuchFieldException {
-        assertEquals(String.format("%.2f", cuboid.getVolume()), "6.00");
+        assertEquals(String.format(Locale.US, "%.2f", cuboid.getVolume()), "6.00");
     }
 
     @DisplayName("Employee sınıf değişkenleri doğru access modifier a sahip mi ?")
